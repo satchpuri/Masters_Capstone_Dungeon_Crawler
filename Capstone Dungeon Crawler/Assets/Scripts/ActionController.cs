@@ -30,18 +30,24 @@ public class ActionController : MonoBehaviour {
 
         if(Input.GetMouseButtonUp(0)) // Toggle Left light
         {
-
+            if(LeftHand.childCount != 0)
+            {
+                LeftHand.GetChild(0).GetComponent<PickableLight>().switchedOn = !LeftHand.GetChild(0).GetComponent<PickableLight>().switchedOn;
+            }
         }
 
-        if (Input.GetMouseButtonUp(0)) // Toggle Right light
+        if (Input.GetMouseButtonUp(1)) // Toggle Right light
         {
-
+            if (RightHand.childCount != 0)
+            {
+                RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn = !RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn;
+            }
         }
     }
 
     public void OnTriggerStay(Collider other)
     {
-        if(Input.GetKey(KeyCode.E))
+        if(Input.GetKey(KeyCode.E))     // Pickup objects
         {
             if(other.gameObject.GetComponent<Pickup>() != null)
             {
