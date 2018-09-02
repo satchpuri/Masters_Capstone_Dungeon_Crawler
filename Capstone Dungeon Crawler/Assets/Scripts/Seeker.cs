@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
 
 // Class for a Seeking Vehicle
 public class Seeker : MonoBehaviour
@@ -9,6 +8,14 @@ public class Seeker : MonoBehaviour
     protected Vector3 velocity;
     protected Vector3 desired;
     public GameObject seekerTarget;
+
+    [SerializeField]
+	private bool isSeeking = false;
+
+	// wander
+	private float circ_distance = 20.0f;
+	private float circ_radius = 10.0f;
+	private float angle_change = 5.0f;
 
     //weighting
     public float seekWeight = 75.0f;
@@ -23,7 +30,7 @@ public class Seeker : MonoBehaviour
     //public float alignWeight = 100.0f;
     //public float coWeight = 200.0f;
 
-    public float maxSpeed = 6.0f;
+    public float maxSpeed = 3.0f;
     public float maxForce = 12.0f;
     public float mass = 1.0f;
     public float radius = 1.0f;
@@ -32,15 +39,20 @@ public class Seeker : MonoBehaviour
     {
         get { return velocity; }
     }
-
-    CharacterController charControl;
+    
 
     void CalcSteeringForces() {
         ultimateForce = Vector3.zero;
 
-        // get a seeking force and add to the ultimate steering force
-        ultimateForce += Seek(seekerTarget.transform.position) * seekWeight;
-        
+		if (isSeeking) {
+			// get a seeking force and add to the ultimate steering force
+			ultimateForce += Seek (seekerTarget.transform.position) * seekWeight;
+		}
+
+		// otherwise, wander
+		//ultimateForce += Wander();
+
+
         ultimateForce = Vector3.ClampMagnitude(ultimateForce, maxForce);
         
         ApplyForce(ultimateForce);
@@ -51,8 +63,6 @@ public class Seeker : MonoBehaviour
         acceleration = Vector3.zero;
         velocity = transform.forward;
         desired = Vector3.zero;
-        
-        charControl = GetComponent<CharacterController>();
 
         ultimateForce = Vector3.zero;
     }
@@ -63,15 +73,30 @@ public class Seeker : MonoBehaviour
     {
         CalcSteeringForces();
         
-        velocity += acceleration * Time.deltaTime;
-        velocity.y = 0;
-        velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
-        //dude face torward target
-        transform.forward = velocity.normalized;
-        charControl.Move(velocity * Time.deltaTime);
-        acceleration = Vector3.zero;
+        //velocity += acceleration * Time.deltaTime;
+        //velocity.y = 0;
+        //velocity = Vector3.ClampMagnitude(velocity, maxSpeed);
+        ////dude face torward target
+        //transform.forward = velocity.normalized;
+        //charControl.Move(velocity * Time.deltaTime);
+        //acceleration = Vector3.zero;
 
     }
+
+	// once colliding with the light, seek the player
+	void OnCollisionEnter(Collision collision) {
+        Debug.Log("collision");
+        if (collision.gameObject.tag == "Player")
+        {
+            isSeeking = true;
+        }
+	}
+
+	// once leaving the colliision with light, stop seeking
+	void OnCollisionExit(Collision collision) {
+        //if (collision.tag == "Player")
+        //    isSeeking = false;
+	}
 
     protected void ApplyForce(Vector3 steeringForce)
     {
@@ -85,6 +110,34 @@ public class Seeker : MonoBehaviour
         Vector3 seekingForce = desired - velocity;
         seekingForce.y = 0;
         return seekingForce;
+    }
+
+	protected Vector3 Wander() {
+		// Calculate the circle center
+		Vector3 circ = velocity;
+		circ.Normalize();
+		circ = circ_radius * circ;
+
+		// Calculate displacement force
+		Vector3 displacement;
+		displacement = new Vector3(0f, 0f, -1f);
+		displacement = circ_radius * displacement;
+
+        // Randomly change the vectors direction by making it its current angle
+        float wanderAngle = 10.0f;
+        SetAngle(displacement, wanderAngle);
+        //wanderAngle += (Random.Range(0f, 1.0f) * angle_change - angle_change * .5f);
+      
+
+        Vector3 wanderForce;
+		wanderForce = circ + displacement;
+		return wanderForce;
+	}
+
+    private void SetAngle(Vector3 vect, float angle) {
+        float mag = vect.magnitude;
+        vect.x = Mathf.Cos(angle) * mag;
+        vect.z = Mathf.Sin(angle) * mag;
     }
 
     /*protected Vector3 AvoidObstacle(GameObject obst, float sD)
