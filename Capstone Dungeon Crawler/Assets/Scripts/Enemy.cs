@@ -43,6 +43,7 @@ public class Enemy : MonoBehaviour
             // enlarge trigger zone
             triggerZone.radius = MAX_TRIGGER_SIZE;
         }
+
     }
 
     void OnTriggerExit(Collider other) {
@@ -54,6 +55,14 @@ public class Enemy : MonoBehaviour
             triggerZone.radius = MIN_TRIGGER_SIZE;
         }
     }
+
+	void OnCollisionEnter(Collision other) {
+		// Hits a Death Trigger with body
+		if (other.gameObject.tag == "DeathTrigger") {
+			Debug.Log (gameObject.name + " has died.");
+			Destroy (gameObject);
+		}
+	}
 
     void Seek(Transform target_tr) {
         // face target
