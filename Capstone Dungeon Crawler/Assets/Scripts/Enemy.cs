@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField]
     bool alerted = false;
+	bool pursuingPlayer = false;
 
     public Transform target;
 
@@ -15,8 +16,8 @@ public class Enemy : MonoBehaviour
 
     // Alert trigger zone
     SphereCollider triggerZone;
-    private float MAX_TRIGGER_SIZE = 15.0f;
-    private float MIN_TRIGGER_SIZE = 5.0f;
+    private float MAX_TRIGGER_SIZE = 8.0f;
+    private float MIN_TRIGGER_SIZE = 3.0f;
 
     void Start() {
         triggerZone = GetComponent<SphereCollider>();
@@ -33,17 +34,20 @@ public class Enemy : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player") {
-            //target = other.transform;     // only one player so don't need to change the target
+        if (other.gameObject.tag == "LightSource") {
+            target = other.transform;	// target light source
             alerted = true;
+
+			// LATER: If lightsource is player held, target and try to attack
 
             // enlarge trigger zone
             triggerZone.radius = MAX_TRIGGER_SIZE;
         }
+
     }
 
     void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "Player") {
+		if (other.gameObject.tag == "LightSource") {
             alerted = false;
             //target = originalPosition;        // eventually have enemy return to their original position
 
@@ -51,6 +55,14 @@ public class Enemy : MonoBehaviour
             triggerZone.radius = MIN_TRIGGER_SIZE;
         }
     }
+
+	void OnCollisionEnter(Collision other) {
+		// Hits a Death Trigger with body
+		if (other.gameObject.tag == "DeathTrigger") {
+			Debug.Log (gameObject.name + " has died.");
+			Destroy (gameObject);
+		}
+	}
 
     void Seek(Transform target_tr) {
         // face target
