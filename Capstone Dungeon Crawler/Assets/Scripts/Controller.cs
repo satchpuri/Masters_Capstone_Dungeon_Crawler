@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour {
 
@@ -18,6 +19,10 @@ public class Controller : MonoBehaviour {
 		Vector3 mousePos = viewCamera.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, viewCamera.transform.position.y));
 		transform.LookAt (mousePos + Vector3.up * transform.position.y);
 		velocity = new Vector3 (Input.GetAxisRaw ("Horizontal"), 0, Input.GetAxisRaw ("Vertical")).normalized * moveSpeed;
+
+		// reset scene
+		if (Input.GetKeyDown (KeyCode.LeftShift))
+			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
     }
 
 	void FixedUpdate() {

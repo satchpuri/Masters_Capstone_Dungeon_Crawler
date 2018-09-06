@@ -69,4 +69,11 @@ public class ActionController : MonoBehaviour {
 
         }
     }
+
+	void OnCollisionEnter(Collision other) {
+		// Hits a Death Trigger with body
+		if (other.gameObject.tag == "DeathTrigger") {
+			Debug.Log (gameObject.name + " has hit a death trigger.");
+		}
+	}
 }
