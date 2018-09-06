@@ -2,7 +2,12 @@ fileFormatVersion: 2
 guid: 488ccf78ce5fbe14db33f20cccd9f386
 folderAsset: yes
 DefaultImporter:
+<<<<<<< HEAD
   externalObjects: {}
   userData: 
   assetBundleName: 
   assetBundleVariant: 
+=======
+  userData: 
+  assetBundleName: 
+>>>>>>> Varun
