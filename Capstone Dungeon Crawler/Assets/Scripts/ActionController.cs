@@ -47,7 +47,7 @@ public class ActionController : MonoBehaviour {
         {
             if (RightHand.childCount != 0)
             {
-                LeftHand.GetChild(0).GetComponent<Pickup>().UseItem();
+                RightHand.GetChild(0).GetComponent<Pickup>().UseItem();
                 if (RightHand.GetChild(0).GetComponent<PickableLight>())
                     RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn = !RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn;
             }
