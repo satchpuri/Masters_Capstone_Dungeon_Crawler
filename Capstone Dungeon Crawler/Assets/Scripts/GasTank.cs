@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GasTank : MonoBehaviour {
+public class GasTank : Pickup {
     [SerializeField]
     private List<Vector3> points = new List<Vector3>();
     RaycastHit hit;
@@ -12,17 +12,30 @@ public class GasTank : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         line = GetComponent<LineRenderer>();
+        prefab = this.gameObject;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        UseItem();
+	}
+
+    float DistanceToLastPoint(Vector3 point)
+    {
+        if (points.Count == 0)
+            return Mathf.Infinity;
+        return Vector3.Distance(points[points.Count - 1], point);
+    }
+
+    public override void UseItem()
+    {
         if (Input.GetMouseButtonDown(0) && gameObject.GetComponent<Pickup>().isHolding)
             points.Clear();
-        if(Input.GetMouseButton(0) && gameObject.GetComponent<Pickup>().isHolding)
+        if (Input.GetMouseButton(0) && gameObject.GetComponent<Pickup>().isHolding)
         {
-            if(Physics.Raycast(transform.position,Vector3.down,out hit,100))
+            if (Physics.Raycast(transform.position, Vector3.down, out hit, 100))
             {
-                if(DistanceToLastPoint(hit.point) > 1f)
+                if (DistanceToLastPoint(hit.point) > 1f)
                 {
                     points.Add(hit.point);
 
@@ -31,22 +44,14 @@ public class GasTank : MonoBehaviour {
                 }
             }
         }
-        else if(Input.GetMouseButtonUp(0) && gameObject.GetComponent<Pickup>().isHolding)
+        else if (Input.GetMouseButtonUp(0) && gameObject.GetComponent<Pickup>().isHolding)
         {
-            //return;
-            //Destroy(gameObject);
-            foreach(Vector3 point in points)
+            foreach (Vector3 point in points)
             {
                 Instantiate(firePrefab, point, Quaternion.identity);
             }
             line.positionCount = 0;
+            //Destroy(gameObject);
         }
-	}
-
-    float DistanceToLastPoint(Vector3 point)
-    {
-        if (points.Count == 0)
-            return Mathf.Infinity;
-        return Vector3.Distance(points[points.Count - 1], point);
     }
 }

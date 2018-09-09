@@ -9,37 +9,37 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1001474376430264}
+  m_RootGameObject: {fileID: 1452556291419278}
   m_IsPrefabAsset: 1
---- !u!1 &1001474376430264
+--- !u!1 &1452556291419278
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4394827579532962}
-  - component: {fileID: 135499037164270772}
-  - component: {fileID: 120465811828727644}
-  - component: {fileID: 114669345280007352}
-  - component: {fileID: 114708242037613804}
+  - component: {fileID: 4236754437977432}
+  - component: {fileID: 135814057722182516}
+  - component: {fileID: 120579818770154698}
+  - component: {fileID: 114886664450891440}
+  - component: {fileID: 114362323242055806}
   m_Layer: 0
-  m_Name: P_Jerrycan_Free
+  m_Name: Gasoline Can
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1377568558263966
+--- !u!1 &1637970405660220
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4736309384205644}
-  - component: {fileID: 33139990415277000}
-  - component: {fileID: 23907589438033748}
+  - component: {fileID: 4730563006384330}
+  - component: {fileID: 33320957338106434}
+  - component: {fileID: 23214793899442204}
   m_Layer: 0
   m_Name: LP
   m_TagString: Untagged
@@ -47,39 +47,39 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4394827579532962
+--- !u!4 &4236754437977432
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1001474376430264}
+  m_GameObject: {fileID: 1452556291419278}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 10.242893, y: -7.58, z: -16.03}
   m_LocalScale: {x: 2.5565655, y: 2.5565655, z: 2.5565655}
   m_Children:
-  - {fileID: 4736309384205644}
+  - {fileID: 4730563006384330}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4736309384205644
+--- !u!4 &4730563006384330
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377568558263966}
+  m_GameObject: {fileID: 1637970405660220}
   m_LocalRotation: {x: -0.35204965, y: 0.1054314, z: 0.23013808, w: 0.90110034}
   m_LocalPosition: {x: -0.038, y: 0.118, z: -0.069}
   m_LocalScale: {x: 1.1741, y: 1.1741, z: 1.1741}
   m_Children: []
-  m_Father: {fileID: 4394827579532962}
+  m_Father: {fileID: 4236754437977432}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -43.078003, y: 2.194, z: 27.788002}
---- !u!23 &23907589438033748
+--- !u!23 &23214793899442204
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377568558263966}
+  m_GameObject: {fileID: 1637970405660220}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -109,19 +109,33 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33139990415277000
+--- !u!33 &33320957338106434
 MeshFilter:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1377568558263966}
+  m_GameObject: {fileID: 1637970405660220}
   m_Mesh: {fileID: 4300000, guid: 890f80ae9a210e54c82a23fd88667e78, type: 3}
---- !u!114 &114669345280007352
+--- !u!114 &114362323242055806
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1001474376430264}
+  m_GameObject: {fileID: 1452556291419278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c412ad5f6bc5fe84eaa790c828495b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Gas
+  isHolding: 0
+  prefab: {fileID: 1500892713008558}
+--- !u!114 &114886664450891440
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1452556291419278}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 40d775975d8f8754b9114fef1937d938, type: 3}
@@ -132,26 +146,12 @@ MonoBehaviour:
   prefab: {fileID: 0}
   points: []
   firePrefab: {fileID: 1758071142847964, guid: 355d2a7beddc516488cb9dce3f8ff3aa, type: 2}
---- !u!114 &114708242037613804
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1001474376430264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c412ad5f6bc5fe84eaa790c828495b9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  name: Gas
-  isHolding: 0
-  prefab: {fileID: 0}
---- !u!120 &120465811828727644
+--- !u!120 &120579818770154698
 LineRenderer:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1001474376430264}
+  m_GameObject: {fileID: 1452556291419278}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -238,12 +238,12 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!135 &135499037164270772
+--- !u!135 &135814057722182516
 SphereCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1001474376430264}
+  m_GameObject: {fileID: 1452556291419278}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1

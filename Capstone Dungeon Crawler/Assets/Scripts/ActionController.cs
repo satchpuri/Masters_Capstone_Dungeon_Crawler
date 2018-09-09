@@ -73,15 +73,12 @@ public class ActionController : MonoBehaviour {
         {
             droppedItem.SetActive(false);
         }
-            // Left Hand holds new item
-            int index = Inventory.instance.NextIndex();
-            nextItem = Inventory.instance.inventoryItems[index];
-            nextItem.prefab.transform.SetParent(LeftHand);
-            nextItem.prefab.transform.position = LeftHand.position;
-            nextItem.prefab.transform.localRotation = Quaternion.identity;
-            nextItem.prefab.gameObject.GetComponent<Pickup>().isHolding = true;
-            nextItem.prefab.gameObject.GetComponent<SphereCollider>().enabled = false;
-            nextItem.prefab.SetActive(true);
+        
+        // Left Hand holds new item
+        int index = Inventory.instance.NextIndex();
+        nextItem = Inventory.instance.inventoryItems[index];
+        EquipLeftHand(nextItem.transform);
+        nextItem.prefab.SetActive(true);
         
         // Right hand holds next item
         droppedItem = DropRightItem();
@@ -89,13 +86,10 @@ public class ActionController : MonoBehaviour {
         {
             droppedItem.SetActive(false);
         }
-            nextItem = Inventory.instance.inventoryItems[Inventory.instance.NextIndex()];
-            nextItem.prefab.transform.SetParent(RightHand);
-            nextItem.prefab.transform.position = RightHand.position;
-            nextItem.prefab.transform.localRotation = Quaternion.identity;
-            nextItem.prefab.gameObject.GetComponent<Pickup>().isHolding = true;
-            nextItem.prefab.gameObject.GetComponent<SphereCollider>().enabled = false;
-            nextItem.prefab.SetActive(true);
+
+        nextItem = Inventory.instance.inventoryItems[Inventory.instance.NextIndex()];
+        EquipRightHand(nextItem.transform);
+        nextItem.prefab.SetActive(true);
     }
 
     //Equip previous inventory Item
@@ -108,11 +102,7 @@ public class ActionController : MonoBehaviour {
         }
         // Right hand holds next item
         nextItem = Inventory.instance.inventoryItems[Inventory.instance.NextIndex()];
-        nextItem.prefab.transform.SetParent(RightHand);
-        nextItem.prefab.transform.position = RightHand.position;
-        nextItem.prefab.transform.localRotation = Quaternion.identity;
-        nextItem.prefab.gameObject.GetComponent<Pickup>().isHolding = true;
-        nextItem.prefab.gameObject.GetComponent<SphereCollider>().enabled = false;
+        EquipRightHand(nextItem.transform);
         nextItem.prefab.SetActive(true);
 
 
@@ -126,11 +116,7 @@ public class ActionController : MonoBehaviour {
         // Left Hand holds new item
         int index = Inventory.instance.NextIndex();
         nextItem = Inventory.instance.inventoryItems[index];
-        nextItem.prefab.transform.SetParent(LeftHand);
-        nextItem.prefab.transform.position = LeftHand.position;
-        nextItem.prefab.transform.localRotation = Quaternion.identity;
-        nextItem.prefab.gameObject.GetComponent<Pickup>().isHolding = true;
-        nextItem.prefab.gameObject.GetComponent<SphereCollider>().enabled = false;
+        EquipLeftHand(nextItem.transform);
         nextItem.prefab.SetActive(true);
     }
 
@@ -180,25 +166,15 @@ public class ActionController : MonoBehaviour {
                 if(LeftHand.childCount == 0)
                 {
                     if (Inventory.instance.AddItem(other.gameObject.GetComponent<Pickup>()))
-                        {
-                            other.transform.SetParent(LeftHand);
-                            other.transform.position = LeftHand.position;
-                            other.transform.localRotation = Quaternion.identity;
-                            other.gameObject.GetComponent<Pickup>().isHolding = true;
-                            other.gameObject.GetComponent<SphereCollider>().enabled = false;
-                            print("holding item\n");
-                        }
+                    {
+                        EquipLeftHand(other.transform);
+                    }
                 }
                 else if(RightHand.childCount == 0)
                 {
                     if (Inventory.instance.AddItem(other.gameObject.GetComponent<Pickup>()))
                     {
-                        other.transform.SetParent(RightHand);
-                        other.transform.position = RightHand.position;
-                        other.transform.localRotation = Quaternion.identity;
-                        other.gameObject.GetComponent<Pickup>().isHolding = true;
-                        other.gameObject.GetComponent<SphereCollider>().enabled = false;
-                        print("holding item\n");
+                        EquipRightHand(other.transform);
                     }
                 }
                 else
@@ -212,7 +188,25 @@ public class ActionController : MonoBehaviour {
         }
     }
 
-	void OnCollisionEnter(Collision other) {
+    void EquipLeftHand(Transform item)
+    {
+        item.SetParent(LeftHand);
+        item.position = LeftHand.position;
+        item.localRotation = Quaternion.identity;
+        item.gameObject.GetComponent<Pickup>().isHolding = true;
+        item.gameObject.GetComponent<SphereCollider>().enabled = false;
+    }
+
+    void EquipRightHand(Transform item)
+    {
+        item.SetParent(RightHand);
+        item.position = RightHand.position;
+        item.localRotation = Quaternion.identity;
+        item.gameObject.GetComponent<Pickup>().isHolding = true;
+        item.gameObject.GetComponent<SphereCollider>().enabled = false;
+    }
+
+    void OnCollisionEnter(Collision other) {
 		// Hits a Death Trigger with body
 		if (other.gameObject.tag == "DeathTrigger") {
 			Debug.Log (gameObject.name + " has hit a death trigger.");
