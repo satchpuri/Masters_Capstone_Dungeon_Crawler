@@ -8,6 +8,7 @@ TagManager:
   - FlashLight
   - LightSource
   - DeathTrigger
+  - Fire
   layers:
   - Default
   - TransparentFX
