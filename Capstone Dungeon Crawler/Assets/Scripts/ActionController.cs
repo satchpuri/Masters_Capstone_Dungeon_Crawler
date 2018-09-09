@@ -145,6 +145,7 @@ public class ActionController : MonoBehaviour {
                 childCollider.enabled = true;
             }
             droppedItem = LeftHand.GetChild(0).gameObject;
+            droppedItem.GetComponent<Pickup>().isHolding = false;
             LeftHand.DetachChildren();
             return droppedItem;
         }
@@ -162,6 +163,7 @@ public class ActionController : MonoBehaviour {
                 childCollider.enabled = true;
             }
             droppedItem = RightHand.GetChild(0).gameObject;
+            droppedItem.GetComponent<Pickup>().isHolding = false;
             RightHand.DetachChildren();
             return droppedItem;
         }
