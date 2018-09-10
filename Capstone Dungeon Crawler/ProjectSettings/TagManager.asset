@@ -9,6 +9,7 @@ TagManager:
   - LightSource
   - DeathTrigger
   - Fire
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -18,10 +19,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Light
+  - Player
+  - Environment
+  - Enemy
   - 
   - 
   - 

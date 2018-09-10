@@ -51,7 +51,8 @@ public class GasTank : Pickup {
                 Instantiate(firePrefab, point, Quaternion.identity);
             }
             line.positionCount = 0;
-            //Destroy(gameObject);
+            Inventory.instance.RemoveItem(gameObject.GetComponent<Pickup>());
+            Destroy(gameObject);
         }
     }
 }
