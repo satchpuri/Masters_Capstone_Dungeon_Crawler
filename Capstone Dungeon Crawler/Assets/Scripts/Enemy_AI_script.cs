@@ -35,7 +35,7 @@ public class Enemy_AI_script : MonoBehaviour
             if (distanceToLight <= enemyVision)
             {
                 PursueLight();
-                Debug.Log("I see the light!");
+               // Debug.Log("I see the light!");
             }
             else
             {
@@ -47,7 +47,7 @@ public class Enemy_AI_script : MonoBehaviour
             if (distanceToPlayer <= enemyVisionWhenLightIsOff)
             {
                 PursuePlayer();
-                Debug.Log("I see the player!");
+                //Debug.Log("I see the player!");
             }
             else
             {
@@ -72,7 +72,7 @@ public class Enemy_AI_script : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             pursuePlayer = true;
-            Debug.Log("I will eat the child!");
+            //Debug.Log("I will eat the child!");
         }
     }
 
@@ -97,5 +97,18 @@ public class Enemy_AI_script : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, enemyVision);
     }
-
+    void OnCollisionEnter(Collision other)
+    {
+        // Hits a Death Trigger with body
+        if (other.gameObject.tag == "DeathTrigger")
+        {
+           // Debug.Log(gameObject.name + " has died.");
+            Destroy(gameObject);
+        }
+        if (other.gameObject.tag == "Fire")
+        {
+            //Debug.Log(gameObject.name + " has died by burning.");
+            Destroy(gameObject);
+        }
+    }
 }

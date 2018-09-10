@@ -32,7 +32,7 @@ public class Inventory : MonoBehaviour {
         if (inventoryItems.Count < size)
         {
             inventoryItems.Add(newPickup);
-            print("Added to inventory");
+            //print("Added to inventory");
             return true;
         }
         return false;
@@ -49,7 +49,7 @@ public class Inventory : MonoBehaviour {
                 return;
             }
         }
-        print("Removed from inventory");
+        //print("Removed from inventory");
     }
 
     // Get the index of the next item to be equiped
