@@ -15,12 +15,12 @@ public class Enemy_AI_script : MonoBehaviour
     bool lightIsOn = true;
 
     public float enemyVision = 10f;
+    public float enemyVisionWhenLightIsOff = 3f;
 
     // Use this for initialization
     void Start()
     {
         enemyAgent = GetComponentInChildren<NavMeshAgent>();
-
     }
 
     // Update is called once per frame
@@ -28,6 +28,7 @@ public class Enemy_AI_script : MonoBehaviour
     {
 
         float distanceToLight = Vector3.Distance(lightSource.position, transform.position);
+        float distanceToPlayer = Vector3.Distance(Player.position, transform.position);
 
         if (lightIsOn)
         {
@@ -36,8 +37,34 @@ public class Enemy_AI_script : MonoBehaviour
                 PursueLight();
                 Debug.Log("I see the light!");
             }
+            else
+            {
+                StopPursuing();
+            }
+        }
+        else
+        {
+            if (distanceToPlayer <= enemyVisionWhenLightIsOff)
+            {
+                PursuePlayer();
+                Debug.Log("I see the player!");
+            }
+            else
+            {
+                StopPursuing();
+            }
         }
        
+    }
+
+    void StopPursuing()
+    {
+        enemyAgent.destination = transform.position;
+    }
+
+    public void SetLightStatus(bool status)
+    {
+        lightIsOn = status;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,7 +84,7 @@ public class Enemy_AI_script : MonoBehaviour
 
     void PursuePlayer()
     {
-
+        enemyAgent.SetDestination(Player.position);
     }
 
     void AttackPlayer()

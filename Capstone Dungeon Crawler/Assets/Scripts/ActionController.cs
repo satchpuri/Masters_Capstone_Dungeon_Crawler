@@ -2,24 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionController : MonoBehaviour {
+public class ActionController : MonoBehaviour
+{
 
     Transform LeftHand;
     Transform RightHand;
     Pickup nextItem;
+
+    List<Enemy_AI_script> enemies;
+
     // Use this for initialization
-    void Start () {
+    void Start()
+    {
         LeftHand = transform.Find("LeftHand");
         RightHand = transform.Find("RightHand");
-	}
-	
-	// Update is called once per frame
-	void Update () {
+        enemies = new List<Enemy_AI_script>(FindObjectsOfType<Enemy_AI_script>());
+    }
+
+    void NotifyEnemies()
+    {
+        bool leftLight = false;
+        bool rightLight = false;
+
+        if (LeftHand.childCount != 0)
+        {
+            if (LeftHand.GetChild(0).GetComponent<PickableLight>())
+                leftLight = LeftHand.GetChild(0).GetComponent<PickableLight>().switchedOn;
+        }
+
+        if (RightHand.childCount != 0)
+        {
+            if (RightHand.GetChild(0).GetComponent<PickableLight>())
+                rightLight = RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn;
+        }
+
+        foreach (var enemy in enemies)
+        {
+            if (leftLight || rightLight)
+                enemy.SetLightStatus(true);
+            else
+                enemy.SetLightStatus(false);
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
         if (Input.GetKeyDown(KeyCode.G))
         {
             if (LeftHand.childCount != 0)
             {
-               var drop = DropLeftItem();
+                var drop = DropLeftItem();
                 //remove from inventory
                 Inventory.instance.RemoveItem(drop.GetComponent<Pickup>());
                 Inventory.instance.currentIndex = 0;
@@ -33,14 +66,16 @@ public class ActionController : MonoBehaviour {
             }
         }
 
-        if(Input.GetMouseButtonUp(0)) // Toggle Left light
+        if (Input.GetMouseButtonUp(0)) // Toggle Left light
         {
-            if(LeftHand.childCount != 0)
+            if (LeftHand.childCount != 0)
             {
                 LeftHand.GetChild(0).GetComponent<Pickup>().UseItem();
-                if(LeftHand.GetChild(0).GetComponent<PickableLight>())
+                if (LeftHand.GetChild(0).GetComponent<PickableLight>())
                     LeftHand.GetChild(0).GetComponent<PickableLight>().switchedOn = !LeftHand.GetChild(0).GetComponent<PickableLight>().switchedOn;
             }
+
+            NotifyEnemies();
         }
 
         if (Input.GetMouseButtonUp(1)) // Toggle Right light
@@ -51,10 +86,12 @@ public class ActionController : MonoBehaviour {
                 if (RightHand.GetChild(0).GetComponent<PickableLight>())
                     RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn = !RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn;
             }
+
+            NotifyEnemies();
         }
 
         var scroll = Input.GetAxis("Mouse ScrollWheel");
-        if(scroll < 0)
+        if (scroll < 0)
         {
             EquipNextInventoryItem();
         }
@@ -73,13 +110,13 @@ public class ActionController : MonoBehaviour {
         {
             droppedItem.SetActive(false);
         }
-        
+
         // Left Hand holds new item
         int index = Inventory.instance.NextIndex();
         nextItem = Inventory.instance.inventoryItems[index];
         EquipLeftHand(nextItem.transform);
         nextItem.prefab.SetActive(true);
-        
+
         // Right hand holds next item
         droppedItem = DropRightItem();
         if (droppedItem != null)
@@ -106,13 +143,13 @@ public class ActionController : MonoBehaviour {
         nextItem.prefab.SetActive(true);
 
 
-        
+
         droppedItem = DropLeftItem();
         if (droppedItem != null)
         {
             droppedItem.SetActive(false);
         }
-        
+
         // Left Hand holds new item
         int index = Inventory.instance.NextIndex();
         nextItem = Inventory.instance.inventoryItems[index];
@@ -159,18 +196,18 @@ public class ActionController : MonoBehaviour {
     // Pickup Items
     public void OnTriggerStay(Collider other)
     {
-        if(Input.GetKeyUp(KeyCode.E))     // Pickup objects
+        if (Input.GetKeyUp(KeyCode.E))     // Pickup objects
         {
-            if(other.gameObject.GetComponent<Pickup>() != null)
+            if (other.gameObject.GetComponent<Pickup>() != null)
             {
-                if(LeftHand.childCount == 0)
+                if (LeftHand.childCount == 0)
                 {
                     if (Inventory.instance.AddItem(other.gameObject.GetComponent<Pickup>()))
                     {
                         EquipLeftHand(other.transform);
                     }
                 }
-                else if(RightHand.childCount == 0)
+                else if (RightHand.childCount == 0)
                 {
                     if (Inventory.instance.AddItem(other.gameObject.GetComponent<Pickup>()))
                     {
@@ -179,10 +216,10 @@ public class ActionController : MonoBehaviour {
                 }
                 else
                 {
-                    if(Inventory.instance.AddItem(other.gameObject.GetComponent<Pickup>()))
+                    if (Inventory.instance.AddItem(other.gameObject.GetComponent<Pickup>()))
                         other.gameObject.SetActive(false);                                      // disable if picked up
                 }
-               
+
             }
 
         }
@@ -206,10 +243,12 @@ public class ActionController : MonoBehaviour {
         item.gameObject.GetComponent<SphereCollider>().enabled = false;
     }
 
-    void OnCollisionEnter(Collision other) {
-		// Hits a Death Trigger with body
-		if (other.gameObject.tag == "DeathTrigger") {
-			Debug.Log (gameObject.name + " has hit a death trigger.");
-		}
-	}
+    void OnCollisionEnter(Collision other)
+    {
+        // Hits a Death Trigger with body
+        if (other.gameObject.tag == "DeathTrigger")
+        {
+            Debug.Log(gameObject.name + " has hit a death trigger.");
+        }
+    }
 }
