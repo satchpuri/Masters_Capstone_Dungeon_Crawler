@@ -4,19 +4,21 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour {
 
-    public GameObject player;       
+    public Transform player;            // The position that that camera will be following.
+    public float smoothing = 5f;        // speed
 
+    private Vector3 offset;
 
-    private Vector3 offset;         
-
-    // Use this for initialization
     void Start()
     {
-        offset = transform.position - player.transform.position;
+        // Calculate the initial offset.
+        offset = transform.position - player.position;
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
-        transform.position = player.transform.position + offset;
+        Vector3 targetCamPos = player.position + offset;
+
+        transform.position = Vector3.Lerp(transform.position, targetCamPos, smoothing * Time.deltaTime);
     }
 }

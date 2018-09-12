@@ -1,9 +1,14 @@
 fileFormatVersion: 2
 guid: 656c6792987b24a52b3b5ebb358aae13
 folderAsset: yes
+<<<<<<< HEAD
+DefaultImporter:
+  externalObjects: {}
+=======
 timeCreated: 1482084089
 licenseType: Store
 DefaultImporter:
+>>>>>>> Varun
   userData: 
   assetBundleName: 
   assetBundleVariant: 
