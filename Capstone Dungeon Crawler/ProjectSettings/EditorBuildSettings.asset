@@ -5,7 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
+  - enabled: 0
+    path: Assets/Scenes/Satch.unity
+    guid: dc17e868edd06c2479ae732b4e67c158
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: 61a73cb86cfd3664e91b58a8dec05638
+  - enabled: 1
+    path: Assets/Scenes/Level_Varun.unity
+    guid: 8a482a8d1f0609e4da362798a4c6d785
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 0
+    path: Assets/Scenes/Enemy_AI_2.unity
+    guid: b4cf9fb83abe65848bc256475e9774e9
   m_configObjects: {}
