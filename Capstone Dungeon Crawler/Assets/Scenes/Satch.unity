@@ -545,7 +545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   minWaitTime: 1
-  maxWaitTime: 3
+  maxWaitTime: 2
 --- !u!1001 &519612816
 Prefab:
   m_ObjectHideFlags: 0
