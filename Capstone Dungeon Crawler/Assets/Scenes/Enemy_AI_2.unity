@@ -1627,6 +1627,26 @@ Prefab:
       propertyPath: m_Name
       value: Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 114482747062207346, guid: 5b68dc2ed37c7304c9c76c174dc9971d,
+        type: 2}
+      propertyPath: enemyVision
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482747062207346, guid: 5b68dc2ed37c7304c9c76c174dc9971d,
+        type: 2}
+      propertyPath: enemyVisionWhenLightIsOff
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114482747062207346, guid: 5b68dc2ed37c7304c9c76c174dc9971d,
+        type: 2}
+      propertyPath: lightSource
+      value: 
+      objectReference: {fileID: 1860349280}
+    - target: {fileID: 114482747062207346, guid: 5b68dc2ed37c7304c9c76c174dc9971d,
+        type: 2}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1624765434}
     m_RemovedComponents:
     - {fileID: 65826318874935810, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
     - {fileID: 114413249995944946, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
@@ -4943,6 +4963,16 @@ Prefab:
       propertyPath: enemyVisionWhenLightIsOff
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 114482747062207346, guid: 5b68dc2ed37c7304c9c76c174dc9971d,
+        type: 2}
+      propertyPath: lightSource
+      value: 
+      objectReference: {fileID: 1860349280}
+    - target: {fileID: 114482747062207346, guid: 5b68dc2ed37c7304c9c76c174dc9971d,
+        type: 2}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1624765434}
     m_RemovedComponents:
     - {fileID: 65826318874935810, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
     - {fileID: 114413249995944946, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
@@ -5904,7 +5934,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1.08
+  m_Intensity: 0.04
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
