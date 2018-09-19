@@ -43,7 +43,10 @@ public class Enemy : MonoBehaviour
             // enlarge trigger zone
             triggerZone.radius = MAX_TRIGGER_SIZE;
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> Merge
     }
 
     void OnTriggerExit(Collider other) {
@@ -62,7 +65,16 @@ public class Enemy : MonoBehaviour
 			Debug.Log (gameObject.name + " has died.");
 			Destroy (gameObject);
 		}
+<<<<<<< HEAD
 	}
+=======
+        if (other.gameObject.tag == "Fire")
+        {
+            Debug.Log(gameObject.name + " has died by burning.");
+            Destroy(gameObject);
+        }
+    }
+>>>>>>> Merge
 
     void Seek(Transform target_tr) {
         // face target

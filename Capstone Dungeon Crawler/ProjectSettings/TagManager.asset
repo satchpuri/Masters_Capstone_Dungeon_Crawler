@@ -8,6 +8,11 @@ TagManager:
   - FlashLight
   - LightSource
   - DeathTrigger
+<<<<<<< HEAD
+=======
+  - Fire
+  - Enemy
+>>>>>>> Merge
   layers:
   - Default
   - TransparentFX
@@ -17,11 +22,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Light
+  - Player
+  - Environment
+  - Enemy
+  - Floor
   - 
   - 
   - 
