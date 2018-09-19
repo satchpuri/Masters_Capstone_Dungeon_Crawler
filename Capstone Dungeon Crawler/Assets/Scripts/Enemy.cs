@@ -33,21 +33,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "LightSource") {
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "LightSource")
+        {
             target = other.transform;	// target light source
             alerted = true;
 
-			// LATER: If lightsource is player held, target and try to attack
+            // LATER: If lightsource is player held, target and try to attack
 
             // enlarge trigger zone
             triggerZone.radius = MAX_TRIGGER_SIZE;
         }
-<<<<<<< HEAD
-
-=======
->>>>>>> Merge
     }
+
 
     void OnTriggerExit(Collider other) {
 		if (other.gameObject.tag == "LightSource") {
@@ -65,16 +64,12 @@ public class Enemy : MonoBehaviour
 			Debug.Log (gameObject.name + " has died.");
 			Destroy (gameObject);
 		}
-<<<<<<< HEAD
-	}
-=======
         if (other.gameObject.tag == "Fire")
         {
             Debug.Log(gameObject.name + " has died by burning.");
             Destroy(gameObject);
         }
     }
->>>>>>> Merge
 
     void Seek(Transform target_tr) {
         // face target
