@@ -82,50 +82,24 @@ public class ActionController : MonoBehaviour
         {
             if (RightHand.childCount != 0)
             {
-                                RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn = !RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn;
+                RightHand.GetChild(0).GetComponent<Pickup>().UseItem();
+                if (RightHand.GetChild(0).GetComponent<PickableLight>())
+                    RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn = !RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn;
             }
+
+            NotifyEnemies();
+        }
+
+        var scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll < 0)
+        {
+            EquipNextInventoryItem();
+        }
+        if (scroll > 0)
+        {
+            EquipBackInventoryItem();
         }
     }
-
-    //public void OnTriggerStay(Collider other)
-    //{
-    //    if (Input.GetKey(KeyCode.E))     // Pickup objects
-    //    {
-    //        if (other.gameObject.GetComponent<Pickup>() != null)
-    //        {
-    //            if (LeftHand.childCount == 0)
-    //            {
-    //                other.transform.SetParent(LeftHand);
-    //                other.transform.position = LeftHand.position;
-    //                other.transform.localRotation = Quaternion.identity;
-    //            }
-    //            else if (RightHand.childCount == 0)
-    //            {
-    //                other.transform.SetParent(RightHand);
-    //                other.transform.position = RightHand.position;
-    //                other.transform.localRotation = Quaternion.identity;
-    //            }
-    //            other.gameObject.GetComponent<Pickup>().isHolding = true;
-    //            print("picked up\n");
-    //            =======
-    //            RightHand.GetChild(0).GetComponent<Pickup>().UseItem();
-    //            if (RightHand.GetChild(0).GetComponent<PickableLight>())
-    //                RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn = !RightHand.GetChild(0).GetComponent<PickableLight>().switchedOn;
-    //        }
-
-    //        NotifyEnemies();
-    //    }
-
-    //    var scroll = Input.GetAxis("Mouse ScrollWheel");
-    //    if (scroll < 0)
-    //    {
-    //        EquipNextInventoryItem();
-    //    }
-    //    if (scroll > 0)
-    //    {
-    //        EquipBackInventoryItem();
-    //    }
-    //}
 
 
     //Equip next inventory Item
@@ -245,12 +219,11 @@ public class ActionController : MonoBehaviour
                     if (Inventory.instance.AddItem(other.gameObject.GetComponent<Pickup>()))
                         other.gameObject.SetActive(false);                                      // disable if picked up
                 }
-                
+
             }
 
         }
     }
-
 
     void EquipLeftHand(Transform item)
     {

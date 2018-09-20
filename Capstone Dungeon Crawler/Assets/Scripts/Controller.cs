@@ -24,7 +24,6 @@ public class Controller : MonoBehaviour {
 		// reset scene
 		if (Input.GetKeyDown (KeyCode.LeftShift))
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().buildIndex);
-
         if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) )
         {
             animator.SetBool("Run", true);

@@ -33,20 +33,17 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "LightSource")
-        {
+    void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "LightSource") {
             target = other.transform;	// target light source
             alerted = true;
 
-            // LATER: If lightsource is player held, target and try to attack
+			// LATER: If lightsource is player held, target and try to attack
 
             // enlarge trigger zone
             triggerZone.radius = MAX_TRIGGER_SIZE;
         }
     }
-
 
     void OnTriggerExit(Collider other) {
 		if (other.gameObject.tag == "LightSource") {

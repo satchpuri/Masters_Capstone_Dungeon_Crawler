@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - LanternLight
+  - FlashLight
+  - LightSource
+  - DeathTrigger
+  - Fire
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -13,11 +19,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Light
+  - Player
+  - Environment
+  - Enemy
+  - Floor
   - 
   - 
   - 

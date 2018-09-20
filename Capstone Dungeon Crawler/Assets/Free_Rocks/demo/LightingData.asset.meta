@@ -1,11 +1,6 @@
 fileFormatVersion: 2
 guid: 8ae2e86a4e85c415b9d7e53083c9b0d5
 <<<<<<< HEAD
-timeCreated: 1482084753
-licenseType: Store
-NativeFormatImporter:
-=======
-<<<<<<< HEAD
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 0
@@ -14,7 +9,6 @@ timeCreated: 1482084753
 licenseType: Store
 NativeFormatImporter:
 >>>>>>> Varun
->>>>>>> Merge
   userData: 
   assetBundleName: 
   assetBundleVariant: 
