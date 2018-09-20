@@ -3074,6 +3074,10 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1242918860949956, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65826318874935810, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
     - {fileID: 114413249995944946, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
@@ -9111,6 +9115,10 @@ Prefab:
       propertyPath: Player
       value: 
       objectReference: {fileID: 1624765434}
+    - target: {fileID: 1242918860949956, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
   m_IsPrefabAsset: 0
@@ -9459,6 +9467,10 @@ Prefab:
     - target: {fileID: 1242918860949956, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1242918860949956, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 65826318874935810, guid: 5b68dc2ed37c7304c9c76c174dc9971d, type: 2}
@@ -10742,7 +10754,7 @@ Light:
   serializedVersion: 8
   m_Type: 2
   m_Color: {r: 1, g: 0, b: 0.114984035, a: 1}
-  m_Intensity: 10
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -11007,7 +11019,7 @@ Light:
   serializedVersion: 8
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.4
+  m_Intensity: 0.04
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10

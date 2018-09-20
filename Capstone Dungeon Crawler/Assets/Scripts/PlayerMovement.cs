@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
 
@@ -63,5 +64,13 @@ public class PlayerMovement : MonoBehaviour {
 
         // Tell the animator whether or not the player is walking.
         anim.SetBool("Run", walking);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.tag == "Enemy")
+        {
+            SceneManager.LoadScene(1);
+        }
     }
 }
